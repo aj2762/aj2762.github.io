@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>اسما جعفری | صفحه شخصی</title>
+  <meta name="description" content="صفحه شخصی اسما جعفری، دانشجوی مهندسی کامپیوتر و علاقه‌مند به هوش مصنوعی">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.12);
+      --text: #eef2ff;
+      --muted: #a5b0d0;
+      --c1: #7c3aed;
+      --c2: #06b6d4;
+      --c3: #f472b6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Vazirmatn", Tahoma, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 2;
+      overflow-x: hidden;
+    }
+
+    /* شبکه‌ی عصبی متحرک پس‌زمینه */
+    #neural { position: fixed; inset: 0; z-index: -1; width: 100%; height: 100%; }
+
+    .blob {
+      position: fixed; border-radius: 50%; filter: blur(100px);
+      opacity: 0.35; z-index: -2; animation: float 14s ease-in-out infinite;
+    }
+    .b1 { width: 420px; height: 420px; background: var(--c1); top: -120px; right: -100px; }
+    .b2 { width: 380px; height: 380px; background: var(--c2); bottom: -120px; left: -100px; animation-delay: -5s; }
+    .b3 { width: 300px; height: 300px; background: var(--c3); top: 45%; left: 35%; opacity: 0.2; animation-delay: -9s; }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(40px, -50px) scale(1.12); }
+    }
+
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+      padding: 14px;
+      background: rgba(11, 16, 32, 0.6);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav a {
+      color: var(--muted); text-decoration: none;
+      padding: 4px 16px; border-radius: 999px; font-size: 0.95rem; transition: 0.25s;
+    }
+    nav a:hover { color: #fff; background: var(--card); }
+
+    section { max-width: 920px; margin: 0 auto; padding: 70px 20px; }
+
+    .hero { text-align: center; padding-top: 90px; }
+    .badge {
+      display: inline-block; margin-bottom: 20px; padding: 4px 18px;
+      border-radius: 999px; font-size: 0.85rem; font-weight: 600;
+      border: 1px solid var(--c2); color: var(--c2);
+      background: rgba(6, 182, 212, 0.1);
+      box-shadow: 0 0 18px rgba(6, 182, 212, 0.35);
+    }
+    .avatar {
+      width: 150px; height: 150px; margin: 0 auto 26px;
+      border-radius: 50%; padding: 5px;
+      background: conic-gradient(from 0deg, var(--c1), var(--c2), var(--c3), var(--c1));
+      animation: spin 8s linear infinite;
+      box-shadow: 0 0 40px rgba(124, 58, 237, 0.5);
+    }
+    .avatar span {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%; border-radius: 50%;
+      background: var(--bg); font-size: 3.6rem; font-weight: 800;
+      animation: spin 8s linear infinite reverse;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    h1 { font-size: clamp(2rem, 6vw, 3.4rem); font-weight: 800; line-height: 1.4; }
+    .grad {
+      background: linear-gradient(90deg, var(--c2), var(--c1), var(--c3));
+      -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .tagline { color: var(--muted); font-size: 1.15rem; margin: 10px 0 8px; }
+    .typing { color: var(--c2); font-weight: 600; min-height: 2em; margin-bottom: 24px; }
+    .typing::after { content: "▍"; margin-right: 2px; animation: blink 1s steps(2) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      text-decoration: none; font-weight: 600; color: #fff;
+      padding: 12px 30px; border-radius: 999px; transition: 0.25s;
+      border: 1px solid var(--border);
+    }
+    .btn.primary { background: linear-gradient(90deg, var(--c1), var(--c2)); border: none; }
+    .btn:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(124, 58, 237, 0.4); }
+
+    h2 { font-size: 1.9rem; margin-bottom: 28px; text-align: center; }
+    h2::after {
+      content: ""; display: block; width: 60px; height: 4px; margin: 8px auto 0;
+      border-radius: 4px; background: linear-gradient(90deg, var(--c1), var(--c3));
+    }
+
+    .glass {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 22px; padding: 28px; backdrop-filter: blur(10px);
+    }
+
+    .about p { color: var(--muted); font-size: 1.05rem; text-align: justify; }
+    .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; margin-top: 24px; }
+    .fact { text-align: center; padding: 18px; border-radius: 16px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); }
+    .fact b { display: block; font-size: 1.5rem; }
+    .fact small { color: var(--muted); }
+
+    /* کارت کد پایتون */
+    .code {
+      direction: ltr; text-align: left; margin-top: 24px;
+      background: #070b17; border: 1px solid var(--border);
+      border-radius: 16px; overflow: hidden;
+      font-family: "Fira Code", Consolas, monospace; font-size: 0.9rem; line-height: 1.8;
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.15);
+    }
+    .code .bar { display: flex; gap: 7px; padding: 10px 14px; background: rgba(255,255,255,0.05); }
+    .code .bar i { width: 11px; height: 11px; border-radius: 50%; display: block; }
+    .code .bar i:nth-child(1) { background: #ff5f56; }
+    .code .bar i:nth-child(2) { background: #ffbd2e; }
+    .code .bar i:nth-child(3) { background: #27c93f; }
+    .code pre { padding: 16px 20px; color: #d6deff; overflow-x: auto; }
+    .k { color: var(--c3); } .s { color: #a5f3a0; } .f { color: var(--c2); } .cm { color: #6b7599; }
+
+    .skills { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .chip {
+      padding: 8px 22px; border-radius: 999px; font-weight: 600;
+      background: var(--card); border: 1px solid var(--border); transition: 0.25s;
+    }
+    .chip:hover { background: linear-gradient(90deg, var(--c1), var(--c3)); transform: scale(1.08) rotate(-2deg); }
+    .chip.ai { border-color: var(--c2); box-shadow: 0 0 14px rgba(6, 182, 212, 0.35); }
+
+    .contact { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .contact a {
+      display: block; text-align: center; text-decoration: none; color: var(--text);
+      padding: 26px; border-radius: 20px; background: var(--card);
+      border: 1px solid var(--border); transition: 0.3s;
+    }
+    .contact a:hover { transform: translateY(-6px); border-color: var(--c2); box-shadow: 0 14px 34px rgba(6, 182, 212, 0.25); }
+    .contact .ico { font-size: 2rem; display: block; }
+    .contact span { color: var(--muted); font-size: 0.9rem; }
+
+    footer { text-align: center; color: var(--muted); padding: 30px 10px 40px; font-size: 0.9rem; }
+
+    @media (max-width: 600px) { section { padding: 50px 16px; } .hero { padding-top: 60px; } }
+  </style>
+</head>
+<body>
+  <canvas id="neural"></canvas>
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+
+  <nav>
+    <a href="#home">خانه</a>
+    <a href="#about">درباره من</a>
+    <a href="#skills">مهارت‌ها</a>
+    <a href="#projects">پروژه‌ها</a>
+    <a href="#contact">ارتباط</a>
+  </nav>
+
+  <section class="hero" id="home">
+    <div class="badge">🧠 AI Developer in the Making</div>
+    <div class="avatar"><span>ا</span></div>
+    <h1>سلام، من <span class="grad">اسما جعفری</span> هستم 👋</h1>
+    <p class="tagline">دانشجوی مهندسی کامپیوتر | علاقه‌مند به هوش مصنوعی و توسعه نرم‌افزار</p>
+    <div class="typing" id="typing"></div>
+    <div class="btns">
+      <a class="btn primary" href="#about">بیشتر بدانید</a>
+      <a class="btn" href="#contact">ارتباط با من</a>
+    </div>
+
+  </section>
+
+  <section id="about" class="about">
+    <h2>درباره من</h2>
+    <div class="glass">
+      <p>
+        من اسما جعفری هستم، دانشجوی مهندسی کامپیوتر. به ساختن چیزهای کاربردی
+        با کد علاقه دارم؛ تا امروز همراه تیمم یک ایجنت هوش مصنوعی برای حوزه‌ی
+        منابع انسانی (HR AI Agent) طراحی کرده‌ام و یک ربات برای پیام‌رسان بله
+        ساخته‌ام. در حال حاضر در مسیر توسعه‌ی هوش مصنوعی قدم برمی‌دارم، تسلط
+        نسبی روی پایتون دارم و در برنامه‌ی منتورینگ مهندسی نرم‌افزار هم با
+        مبانی Front-end آشنا می‌شوم. هدفم این است که یک مهندس نرم‌افزار
+        حرفه‌ای شوم و روی پروژه‌های واقعی کار کنم.
+      </p>
+      <div class="facts">
+        <div class="fact"><b>🎓</b><small>مهندسی کامپیوتر</small></div>
+        <div class="fact"><b>🐍</b><small>تسلط نسبی روی پایتون</small></div>
+        <div class="fact"><b>🤖</b><small>در مسیر هوش مصنوعی</small></div>
+      </div>
+      <div class="code">
+        <div class="bar"><i></i><i></i><i></i></div>
+<pre><span class="k">class</span> <span class="f">Asma</span>:
+    field  = <span class="s">"Computer Engineering"</span>
+    skills = [<span class="s">"Python"</span>, <span class="s">"AI"</span>, <span class="s">"Bots"</span>]
+    goal   = <span class="s">"Become an AI &amp; Software Engineer"</span>
+
+    <span class="k">def</span> <span class="f">learn</span>(self):
+        <span class="k">while</span> <span class="k">True</span>:
+            self.build(); self.improve()  <span class="cm"># never stop</span></pre>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>مهارت‌ها و علایق</h2>
+    <div class="skills">
+      <div class="chip ai">Python</div>
+      <div class="chip ai">هوش مصنوعی</div>
+      <div class="chip ai">یادگیری ماشین</div>
+      <div class="chip ai">ایجنت‌های هوش مصنوعی</div>
+      <div class="chip">ساخت ربات (بله)</div>
+      <div class="chip">HTML</div>
+      <div class="chip">CSS</div>
+      <div class="chip">Git &amp; GitHub</div>
+      <div class="chip">حل مسئله</div>
+    </div>
+
+  </section>
+
+  <section id="projects">
+    <h2>پروژه‌ها</h2>
+    <div class="contact">
+      <div class="glass">
+        <span class="ico" style="font-size:2rem">🤖</span>
+        <h3>ربات بله</h3>
+        <p style="color:var(--muted)">ساخت ربات برای پیام‌رسان بله. (توضیح کوتاه کاربرد ربات را اینجا بنویس.)</p>
+      </div>
+      <div class="glass">
+        <span class="ico" style="font-size:2rem">🧠</span>
+        <h3>HR AI Agent</h3>
+        <p style="color:var(--muted)">طراحی یک ایجنت هوش مصنوعی برای حوزه‌ی منابع انسانی، به‌صورت کار تیمی. (توضیح کوتاه کارکرد ایجنت را اینجا بنویس.)</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>ارتباط با من</h2>
+    <div class="contact">
+      <a href="https://github.com/aj2762" target="_blank" rel="noopener">
+        <span class="ico">🐙</span>
+        <strong>GitHub</strong><br>
+        <span>github.com/aj2762</span>
+      </a>
+      <a href="https://www.linkedin.com/in/asma-jafari-49a48b39a" target="_blank" rel="noopener">
+        <span class="ico">💼</span>
+        <strong>LinkedIn</strong><br>
+        <span>linkedin.com/in/asma-jafari-49a48b39a</span>
+      </a>
+    </div>
+  </section>
+
+
+  <script>
+    // --- شبکه‌ی عصبی متحرک ---
+    (function () {
+      var canvas = document.getElementById("neural");
+      var ctx = canvas.getContext("2d");
+      var nodes = [], mouse = { x: null, y: null }, W, H;
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+        var count = Math.min(90, Math.floor((W * H) / 16000));
+        nodes = [];
+        for (var i = 0; i < count; i++) {
+          nodes.push({
+            x: Math.random() * W, y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.5, vy: (Math.random() - 0.5) * 0.5,
+            r: Math.random() * 1.8 + 1
+          });
+        }
+      }
+      window.addEventListener("resize", resize);
+      window.addEventListener("mousemove", function (e) { mouse.x = e.clientX; mouse.y = e.clientY; });
+      window.addEventListener("mouseleave", function () { mouse.x = mouse.y = null; });
+      resize();
+
+      function draw() {
+        ctx.clearRect(0, 0, W, H);
+        for (var i = 0; i < nodes.length; i++) {
+          var a = nodes[i];
+          a.x += a.vx; a.y += a.vy;
+          if (a.x < 0 || a.x > W) a.vx *= -1;
+          if (a.y < 0 || a.y > H) a.vy *= -1;
+
+          ctx.beginPath();
+          ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(6,182,212,0.8)";
+          ctx.fill();
+
+          for (var j = i + 1; j < nodes.length; j++) {
+            var b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 130) {
+              ctx.strokeStyle = "rgba(124,58,237," + (0.35 * (1 - d / 130)) + ")";
+              ctx.lineWidth = 1;
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+            }
+          }
+          if (mouse.x !== null) {
+            var mx = a.x - mouse.x, my = a.y - mouse.y, md = Math.sqrt(mx * mx + my * my);
+            if (md < 160) {
+              ctx.strokeStyle = "rgba(244,114,182," + (0.5 * (1 - md / 160)) + ")";
+              ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+            }
+          }
+        }
+        requestAnimationFrame(draw);
+      }
+      draw();
+    })();
+
+    // --- متن تایپ‌شونده ---
+    (function () {
+      var phrases = [
+        "در حال یادگیری هوش مصنوعی 🧠",
+        "پایتون‌کار و سازنده‌ی ربات 🐍",
+        "طراح ایجنت هوش مصنوعی برای HR 🤖",
+        "هر روز یک قدم جلوتر 🚀"
+      ];
+      var el = document.getElementById("typing");
+      var p = 0, c = 0, deleting = false;
+      function tick() {
+        var text = phrases[p];
+        el.textContent = text.slice(0, c);
+        if (!deleting && c < text.length) { c++; setTimeout(tick, 80); }
+        else if (!deleting) { deleting = true; setTimeout(tick, 1400); }
+        else if (c > 0) { c--; setTimeout(tick, 40); }
+        else { deleting = false; p = (p + 1) % phrases.length; setTimeout(tick, 300); }
+      }
+      tick();
+    })();
+  </script>
+</body>
+</html>
